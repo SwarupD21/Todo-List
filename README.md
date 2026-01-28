@@ -1,71 +1,93 @@
-# Django Projects
-This repository contains Django projects built while learning and practicing Django.
+# ✅ Django To-Do List Application
 
-👉 Currently, it includes **one project**:  
-**Kitchen Recipe Management System**  
-More Django projects will be added to this repository in the future.
+A modern **To-Do List web application** built using **Django**, featuring a clean UI, authentication system, and full task management (Create, Update, Complete, Delete).  
+Designed with a **premium gradient theme**, **glass-style cards**, and **responsive layout**.
 
 ---
 
-## 🍽️ Kitchen Recipe Management System
-A beginner-friendly Django web application that allows users to manage their own recipes with authentication.
+## 🚀 Features
+
+- 🔐 User Authentication (Login / Register / Logout)
+- 🏠 Beautiful Home Page (Landing UI)
+- 📝 Create Tasks with Title & Description
+- ✏️ Update Existing Tasks
+- ✅ Mark Tasks as Complete / Undo
+- 🗑️ Delete Tasks
+- 🎨 Premium UI (Gradient background + Glass cards)
+- 📱 Fully Responsive Design
+- ⚡ Fast & Simple User Experience
 
 ---
 
-## ✨ Features
-- User Registration & Login
-- Add new recipes
-- Edit existing recipes
-- Delete recipes
-- Upload recipe images
-- Each user can see only their own recipes
-- Simple and clean UI using Bootstrap
+## 🗂️ Project Structure
+
+TO DO LIST/  
+│  
+├── todo/ # Django project settings  
+│ ├── settings.py  
+│ ├── urls.py  
+│ ├── wsgi.py  
+│ └── asgi.py  
+│  
+├── list/ # Main app  
+│ ├── migrations/  
+│ ├── templates/  
+│ │ ├── home.html  
+│ │ ├── login.html  
+│ │ ├── register.html  
+│ │ ├── taskform.html  
+│ │ └── update_taskform.html  
+│ ├── views.py  
+│ ├── urls.py  
+│ └── models.py  
+│  
+├── static    
+├── templates/  
+│ └── layout.html # Base template  
+│  
+├── db.sqlite3  
+├── manage.py  
+└── README.md  
 
 ---
 
 ## 🛠️ Tech Stack
-- Python
-- Django
-- HTML & CSS
-- Bootstrap
-- SQLite (default Django database)
+
+- **Backend:** Django (Python)
+- **Frontend:** HTML, CSS, Bootstrap
+- **Database:** SQLite
+- **Auth:** Django Authentication System
 
 ---
 
-## 📂 Project Structure
+## 📦 Installation & Setup
 
-Django-Projects/  
-│
-├── kitchen/  
-│ ├── kitchen/ # Main project settings  
-│ ├── recipies/ # Recipe app  
-│ ├── templates/ # HTML templates  
-│ ├── media/ # Uploaded images (ignored in git)  
-│ └── manage.py  
-│  
-└── .gitignore  
+### 1️⃣ Clone the Repository
 
----
-
-## 🚀 How to Run the Project Locally
-
-### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/SwarupD21/Django-Projects.git
-cd Django-Projects
+git clone https://github.com/your-username/todo-django.git
+cd todo-django
 ```
----
-
-## 📌 Future Plans
-
-- Add more Django projects to this repository
-- Improve UI and validations
-- Deploy projects online
-- Add REST API support
-
----
-
-## 👤 Author
-
-**Swarup Dash**  
-B.Tech IT Student | Django Learner
+### 2️⃣ Create Virtual Environment
+```bash
+python -m venv venv
+venv\Scripts\activate   # Windows
+source venv/bin/activate  # Mac/Linux
+``` 
+### 3️⃣ Install Dependencies
+```bash
+pip install django
+```
+### 4️⃣ Apply Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+### 5️⃣ Run Server
+```bash
+python manage.py runserver
+```
+# 👨‍💻 Developed By
+Swarup Dash  
+B.Tech IT — VSSUT Burla  
+  
