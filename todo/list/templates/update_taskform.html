@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% block title %}Update Task{% endblock %}
+
+{% block content %}
+
+<style>
+/* Background */
+body {
+  background: linear-gradient(135deg, #1e293b, #4338ca, #020617);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* Center container */
+.update-container {
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+/* Premium soft card */
+.update-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  padding: 28px;
+  transition: 0.25s ease;
+}
+
+.update-card:hover {
+  box-shadow: 0 16px 36px rgba(99,102,241,0.18);
+}
+
+/* Title */
+.update-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #4338ca;
+  margin-bottom: 14px;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  transition: 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+/* Buttons */
+.btn-soft {
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.btn-soft:hover {
+  transform: translateY(-1px);
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 40px;
+  padding: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #cbd5f5;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.site-footer span {
+  color: #818cf8;
+  font-weight: 600;
+}
+</style>
+
+<div class="update-container">
+
+  <div class="update-card">
+
+    <h4 class="update-title">Update Task</h4>
+    <hr class="mb-3">
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- Task Title -->
+      <div class="mb-3">
+        <label class="form-label">Task Title</label>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          value="{{tasks.title}}"
+          required
+        />
+      </div>
+
+      <!-- Task Description -->
+      <div class="mb-4">
+        <label class="form-label">Task Description</label>
+        <textarea
+          name="description"
+          class="form-control"
+          rows="4"
+        >{{tasks.description}}</textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'task' %}" class="btn btn-secondary btn-soft">
+          Cancel
+        </a>
+        <button type="submit" class="btn btn-primary btn-soft px-4">
+          Update Task
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  © 2026 Developed by <span>Swarup Dash</span>. All rights reserved.
+</footer>
+
+{% endblock %}

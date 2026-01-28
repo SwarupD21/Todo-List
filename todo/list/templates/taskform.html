@@ -1,0 +1,174 @@
+{% extends "layout.html" %} 
+{% block title %}To Do List{% endblock %} 
+{% block content %}
+
+<style>
+/* LIGHTER BACKGROUND LIKE LOGIN/REGISTER */
+body {
+  background: linear-gradient(135deg, #1e293b, #3730a3, #020617);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* Softer card look */
+.soft-card {
+  background: rgba(255,255,255,0.92);
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+  transition: 0.25s ease;
+}
+
+.soft-card:hover {
+  box-shadow: 0 12px 28px rgba(99,102,241,0.18);
+}
+
+/* Better buttons */
+.btn-soft {
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.btn-soft:hover {
+  transform: translateY(-1px);
+}
+
+/* Task highlight */
+.task-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Header text */
+.header-text {
+  color: white;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 60px;
+  padding: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #cbd5f5;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.site-footer span {
+  color: #818cf8;
+  font-weight: 600;
+}
+</style>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom header-text">
+    
+    <ul class="nav col-md-auto mb-2 justify-content-center">
+      <li><a href="{% url 'task' %}" class="nav-link px-2 text-indigo-300 fw-semibold">Home</a></li>
+    </ul>
+
+    <div class="text-end">
+      {% if user.is_authenticated %}
+      <span class="fw-semibold text-indigo-200 me-3">
+        Hello, {{ user.username }}
+      </span>
+
+      <form action="{% url 'logout_user' %}" method="post" class="d-inline">
+        {% csrf_token %}
+        <button class="btn btn-danger btn-soft px-3">Logout</button>
+      </form>
+
+      {% else %}
+      <a href="{% url 'register' %}" class="btn btn-primary btn-soft mx-1">Register</a>
+      <a href="{% url 'logged_in' %}" class="btn btn-primary btn-soft mx-1">Login</a>
+      {% endif %}
+    </div>
+
+  </header>
+
+  <!-- ADD TASK -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+      <div class="soft-card p-4">
+
+        <h3 class="text-center mb-3 fw-bold text-indigo-700">Add a Task</h3>
+        <hr>
+
+        <form method="post">
+          {% csrf_token %}
+
+          <label class="fw-semibold mt-2">Title of the Task</label>
+          <input type="text" name="title" class="form-control mt-1" placeholder="Enter your task" required>
+
+          <label class="fw-semibold mt-3">Task Description</label>
+          <textarea name="description" class="form-control mt-1" rows="3"></textarea>
+
+          <button class="btn btn-success btn-soft mt-3 px-4">Add Task</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TASK LIST -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+      <div class="soft-card p-4">
+
+        <h3 class="text-center fw-bold text-indigo-700 mb-3">Your Tasks</h3>
+
+        {% if tasks %}
+        <ul class="list-group list-group-flush">
+
+          {% for task in tasks %}
+          <li class="list-group-item d-flex justify-content-between align-items-start py-3">
+
+            <div class="me-3">
+              {% if task.state %}
+                <del class="text-muted">{{ task.title }}</del>
+              {% else %}
+                <div class="task-title">{{ task.title }}</div>
+                <small class="text-muted">{{ task.description }}</small>
+              {% endif %}
+            </div>
+
+            <div class="d-flex gap-2">
+
+              <form action="{% url 'task_complete' task.id %}" method="post">
+                {% csrf_token %}
+                {% if task.state %}
+                  <button class="btn btn-warning btn-sm btn-soft">Undo</button>
+                {% else %}
+                  <button class="btn btn-outline-success btn-sm btn-soft">Done</button>
+                {% endif %}
+              </form>
+
+              <form action="{% url 'task_delete' task.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-outline-danger btn-sm btn-soft">Delete</button>
+              </form>
+
+              <a href="{% url 'task_update' task.id %}" class="btn btn-primary btn-sm btn-soft">Edit</a>
+
+            </div>
+
+          </li>
+          {% endfor %}
+
+        </ul>
+        {% else %}
+        <p class="text-muted text-center mt-2">No tasks yet.</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  © 2026 Developed by <span>Swarup Dash</span>. All rights reserved.
+</footer>
+
+{% endblock %}

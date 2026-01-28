@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+
+<style>
+/* Page background */
+body {
+  background: linear-gradient(135deg, #1e293b, #312e81, #020617);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  margin: 0;
+}
+
+/* Center container */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Card */
+.register-card {
+  width: 100%;
+  max-width: 460px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 18px;
+  padding: 28px;
+  color: white;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  transition: 0.3s ease;
+}
+
+/* Hover animation */
+.register-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 35px 80px rgba(99,102,241,0.4);
+}
+
+/* Title */
+.register-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.register-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #cbd5f5;
+  margin-bottom: 18px;
+}
+
+/* Labels */
+.form-label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 14px rgba(99,102,241,0.6);
+}
+
+/* Login text */
+.login-text {
+  font-size: 14px;
+  color: #cbd5f5;
+  margin-top: 10px;
+}
+
+.login-text a {
+  color: #818cf8;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  background: linear-gradient(135deg, #6366f1, #9333ea);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.register-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 30px rgba(99,102,241,0.6);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 22px;
+  }
+}
+
+.site-footer {
+  color: #cbd5f5;
+  text-align: center;
+  padding: 14px 10px;
+  font-size: 13px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.site-footer span {
+  color: #818cf8;
+  font-weight: 600;
+}
+
+.site-footer a {
+  color: #818cf8;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+</style>
+
+<div class="register-container">
+  <form method="post" class="register-card">
+    {% csrf_token %}
+
+    <h2 class="register-title">Create Account</h2>
+    <p class="register-subtitle">Register to get started</p>
+
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" name="username" required placeholder="Enter username">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-control" name="email" required placeholder="Enter email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" required placeholder="Create password">
+    </div>
+
+    <h6 class="login-text">
+      Already have an account? 
+      <a href="{% url 'logged_in' %}">Login</a>
+    </h6>
+
+    <button type="submit" class="register-btn">Register</button>
+    <footer class="site-footer">
+    © 2026 Developed by <span>Swarup</span>. All rights reserved.
+    </footer>
+  </form>
+</div>
+
+{% endblock %}
