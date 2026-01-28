@@ -1,0 +1,188 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+/* Background */
+body {
+  background: linear-gradient(135deg, #1e293b, #4338ca, #020617);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Center Layout */
+.home-container {
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px;
+}
+
+/* 3D Glass Card */
+.home-card {
+  width: 100%;
+  max-width: 820px;
+  background: rgba(255,255,255,0.96);
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  padding: 48px;
+  text-align: center;
+  transition: 0.35s ease;
+  transform-style: preserve-3d;
+  animation: fadeUp 0.7s ease;
+}
+
+/* 3D Hover Tilt */
+.home-card:hover {
+  transform: rotateX(6deg) rotateY(-6deg) scale(1.02);
+  box-shadow: 0 22px 60px rgba(99,102,241,0.28);
+}
+
+/* Title */
+.home-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #4338ca;
+  margin-bottom: 12px;
+}
+
+/* Subtitle */
+.home-subtitle {
+  font-size: 15px;
+  color: #475569;
+  margin-bottom: 28px;
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* Feature Tile */
+.feature-card {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: 0.25s ease;
+  transform-style: preserve-3d;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(99,102,241,0.18);
+}
+
+/* Feature Icons */
+.feature-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+/* CTA Button */
+.home-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 34px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6366f1, #9333ea);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.25s ease;
+  animation: glowPulse 2s infinite alternate;
+}
+
+.home-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 14px 32px rgba(99,102,241,0.55);
+}
+
+/* Fade Up Animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glow Button */
+@keyframes glowPulse {
+  from { box-shadow: 0 0 12px rgba(99,102,241,0.3); }
+  to { box-shadow: 0 0 28px rgba(147,51,234,0.7); }
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 40px;
+  padding: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #cbd5f5;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.site-footer span {
+  color: #818cf8;
+  font-weight: 600;
+}
+</style>
+
+<div class="home-container">
+
+  <div class="home-card">
+
+    <h1 class="home-title">Welcome to Your To-Do App</h1>
+    <p class="home-subtitle">
+      Plan tasks, track progress, and stay productive with a clean and powerful task manager.
+    </p>
+
+    <!-- Features -->
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <strong>Create Tasks</strong>
+        <p class="text-muted mt-1">Add tasks with titles and descriptions easily.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <strong>Track Progress</strong>
+        <p class="text-muted mt-1">Mark tasks complete and undo anytime.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <strong>Fast & Simple</strong>
+        <p class="text-muted mt-1">Minimal, distraction-free productivity.</p>
+      </div>
+
+      <!-- NEW FEATURE -->
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <strong>Secure & Private</strong>
+        <p class="text-muted mt-1">Your tasks stay safe and private.</p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <a href="{% url 'task' %}" class="home-btn">
+      Go to Task Dashboard
+    </a>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  © 2026 Developed by <span>Swarup Dash</span>. All rights reserved.
+</footer>
+
+{% endblock %}
